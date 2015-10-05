@@ -3,19 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Baseball Trois-Pistoles</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <link rel="stylesheet" href="css/datatable.min.css" />
-    <script src="js/vendor/modernizr.js"></script>
-    <script src="js/jquery-1.11.3.min.js"></script>
+    <title>Administration | Baseball Trois-Pistoles</title>
+    <link rel="stylesheet" href="../css/foundation.css" />
+    <link rel="stylesheet" href="../css/datatable.min.css" />
+    <script src="../js/vendor/modernizr.js"></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
 </head>
 <body>
     <?php
         /* Object */
-		include("php/Category.php");
-        include("php/MySql.php");
+		include("../php/MySql.php");
+        incluse("../php/LocalDefinition.php");
 		
         include("large_menu.php");
+        
+        
         /*include("small_menu_start.php");*/
 
         /*$mySql = new MySql();
@@ -32,7 +34,6 @@
 			$result->close();
 		}*/
     ?>
-
             <!-- MAIN SECTION -->
             <section class="main-section">
                 
@@ -74,10 +75,6 @@
                 </div>
 
             </section>
-    <?php
-        include("small_menu_end.php");
-
-    ?>
 
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>

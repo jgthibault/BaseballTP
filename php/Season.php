@@ -1,13 +1,14 @@
 <?php
 
-class Season 
+class Season extends BaseClass
 {
     public $Year;
     public $Name;
     public $IsCurrent;
-    
+	    
     function __construct()
-    {}
+    {
+	}
     
     public function initProperty($year, $name, $isCurrent)
     {   
@@ -27,7 +28,16 @@ class Season
         $this->Year = $year;
         $this->Name = $name;
         $this->IsCurrent = $isCurrent;
+		
+		$this->initValueState();
     }
+	
+	private function initValueState()
+	{
+		$ValueState = array("year" => "", 
+							"name" => "",
+							"isCurrent" => "");
+	}
     
     public function getIsCurrent()
     {
@@ -41,9 +51,23 @@ class Season
         }
     }
     
-    public function hasError()
+    public function validate()
     {
-        
+		$this->initValueState();
+		
+        if (!is_numeric($this->Year))
+		{
+			$ValueState["year"] = "L'année doit être un nombre valide";
+		}
+		
+		if (strlen
     }
+	
+	public function hasError()
+	{
+		return $ValueState["year"] <> "" or 
+			   $ValueState["name"] <> "" or
+			   $ValueState["isCurrent"] <> "" or;
+	}
 } 
 ?>

@@ -60,7 +60,7 @@ class Season extends BaseClass
 			$ValueState["year"] = "L'année doit être un nombre valide";
 		}
 		
-		if (strlen
+		if (strlen($this->Name) 
     }
 	
 	public function hasError()
@@ -68,6 +68,16 @@ class Season extends BaseClass
 		return $ValueState["year"] <> "" or 
 			   $ValueState["name"] <> "" or
 			   $ValueState["isCurrent"] <> "" or;
+	}
+	
+	public function attributeHasError($attName)
+	{
+		return $ValueState["year"] <> "";
+	}
+	
+	public function getAttributeError($attName)
+	{
+		return $ValueState["year"];
 	}
 } 
 ?>

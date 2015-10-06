@@ -50,9 +50,16 @@
                         <form>
                             <div class="row">
                                 <div class="small-6 columns">
-                                    <label>Année
+                                    <label <?php if ($season->attributeHasError('year')) { echo "class='error'";} ?>>Année
                                         <input type="text" value="<?php echo $season->Year; ?>" />
                                     </label>
+									<?php 
+										if ($season->attributeHasError('year')) 
+										{
+											echo "<small class='error'>" . $season->getAttributeError("year") . "</small>";
+										} 
+									?>
+									
                                 </div>
                                 <div class="small-6 columns">
                                     <label>Nom

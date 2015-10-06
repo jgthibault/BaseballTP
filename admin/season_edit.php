@@ -25,24 +25,23 @@
 
         $mySql = new MySql();
         
-        if(isset($_GET["season"]))
-        {
-            $result = $mySql->execute("SELECT * FROM season WHERE Year = " . $_GET["season"]);
-            $row = $result->fetch_object("Season");
-        }
 
     ?>
             <!-- MAIN SECTION -->
             <section class="main-section">
                 <div class="small-12 columns">
                     <div class="row">
-                        <h4>saison - <?php if (isset($_GET["season"]))
+                        <h4>saison - <?php if (isset($_GET["year"]))
                                             {
-                                                echo $row->Year;
+                                                $season = new Season();
+                                                $season->initDB($_GET["year"], $mySql);
+                                                echo $season->Year;
+                                                $pageMode = Constants::PAGE_MODE_EDIT;
                                             }
                                             else
                                             {
                                                 echo "[Nouvelle]";
+                                                $pageMode = Constants::PAGE_MODE_ADD;
                                             }
                                       ?>
                         </h4>
@@ -52,12 +51,12 @@
                             <div class="row">
                                 <div class="small-6 columns">
                                     <label>Année
-                                        <input type="text" />
+                                        <input type="text" value="<?php echo $season->Year; ?>" />
                                     </label>
                                 </div>
                                 <div class="small-6 columns">
                                     <label>Nom
-                                        <input type="text" />
+                                        <input type="text" value="<?php echo $season->Name; ?>" />
                                     </label>
                                 </div>
                             </div>
@@ -65,7 +64,7 @@
                                 <div class="small-6 columns">
                                     <label>Saison courante
                                         <div class="switch">
-                                            <input id="isCurrent" type="checkbox" checked /> 
+                                            <input id="isCurrent" type="checkbox" <?php if ($season->IsCurrent) { echo "checked";} ?> /> 
                                             <label for="isCurrent"></label>
                                         </div> 
                                     </label>

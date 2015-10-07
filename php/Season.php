@@ -5,9 +5,11 @@ class Season extends BaseClass
     public $Year;
     public $Name;
     public $IsCurrent;
+	public static $PageMode;
 	    
     function __construct()
     {
+		$this->IsCurrent = false;
 	}
     
     public function initProperty($year, $name, $isCurrent)
@@ -60,10 +62,17 @@ class Season extends BaseClass
 			$ValueState["year"] = "L'année doit être un nombre valide";
 		}
 		
-		if (strlen($this->Name) 
+		if (strlen($this->Name) > 15)
+		{
+			$ValueState["name"] = "Le nom ne peut dépasser 15 caractères";
+		}
+		else if (strlen($this->Name) == 0)
+		{
+			$ValueState["name"] = "Le nom ne peut être vide";
+		}
     }
 	
-	public function hasError()
+	public function getHasError()
 	{
 		return $ValueState["year"] <> "" or 
 			   $ValueState["name"] <> "" or

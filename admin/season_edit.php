@@ -31,27 +31,47 @@
             <section class="main-section">
                 <div class="small-12 columns">
                     <div class="row">
-                        <h4>saison - <?php if (isset($_GET["year"]))
+                        <h4>saison - <?php  $season = new Season();
+											if (isset($_POST["year"]))
+											{
+												$season->initProperty($_POST["year"], $_POST["name"], $_POST["isCurrent"]);
+												$season->validate();
+												
+												if (!$season->getHasError())
+												{
+													if (Season::PageMode = Constants::PAGE_MODE_EDIT)
+													{
+														$mySql->prepare("UPDATE season SET season = ?, name = ?, iscurrent = ? WHERE 
+													}
+													else
+													{
+														
+													}
+												}
+												
+												echo $season->Year;
+											}
+											else if (isset($_GET["year"]))
                                             {
-                                                $season = new Season();
                                                 $season->initDB($_GET["year"], $mySql);
-                                                echo $season->Year;
-                                                $pageMode = Constants::PAGE_MODE_EDIT;
+                                                
+												echo $season->Year;
+                                                Season::PageMode = Constants::PAGE_MODE_EDIT;
                                             }
                                             else
                                             {
                                                 echo "[Nouvelle]";
-                                                $pageMode = Constants::PAGE_MODE_ADD;
+                                                Season::PageMode = Constants::PAGE_MODE_ADD;
                                             }
                                       ?>
                         </h4>
                     </div>
                     <div class="row">					
-                        <form>
+                        <form action="season_edit.php" id="form_season" method="post">
                             <div class="row">
                                 <div class="small-6 columns">
                                     <label <?php if ($season->attributeHasError('year')) { echo "class='error'";} ?>>Année
-                                        <input type="text" value="<?php echo $season->Year; ?>" />
+                                        <input type="text" name="year" value="<?php echo $season->Year; ?>" />
                                     </label>
 									<?php 
 										if ($season->attributeHasError('year')) 
@@ -62,16 +82,22 @@
 									
                                 </div>
                                 <div class="small-6 columns">
-                                    <label>Nom
-                                        <input type="text" value="<?php echo $season->Name; ?>" />
+                                    <label <?php if ($season->attributeHasError('name')) { echo "class='error'";} ?>>Nom
+                                        <input type="text" name="name" value="<?php echo $season->Name; ?>" />
                                     </label>
+									<?php 
+										if ($season->attributeHasError('name')) 
+										{
+											echo "<small class='error'>" . $season->getAttributeError("year") . "</small>";
+										} 
+									?>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="small-6 columns">
                                     <label>Saison courante
                                         <div class="switch">
-                                            <input id="isCurrent" type="checkbox" <?php if ($season->IsCurrent) { echo "checked";} ?> /> 
+                                            <input id="isCurrent" name="isCurrent" type="checkbox" <?php if ($season->IsCurrent) { echo "checked";} ?> /> 
                                             <label for="isCurrent"></label>
                                         </div> 
                                     </label>
@@ -83,7 +109,7 @@
                                         <a href="season.php" class="button right">Annuler</a>
                                     </div>
                                     <div class="small-2 columns right">
-                                        <a href="season_edit.php" class="button right">Enregistrer</a>
+                                        <a href="javascript:;" onclick="document.getElementById('form_season').submit();" class="button right">Enregistrer</a>
                                     </div> 
                                 
                             </div>  

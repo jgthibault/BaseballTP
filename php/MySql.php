@@ -58,6 +58,16 @@ class MySql
 
         return null;
     }
+	
+	function prepare($query, $type, $params)
+	{
+		if ($stmt = $mysqli->prepare($query))
+		{
+			return $stmt;
+		}
+		
+		return null;
+	}
 
     /////////////////////////////////////////////
     ///Description: Get the number of records of

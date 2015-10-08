@@ -6,6 +6,8 @@ class Season extends BaseClass
     public $Name;
     public $IsCurrent;
 	public static $PageMode;
+    
+    private $m_valueState;
 	    
     function __construct()
     {
@@ -36,9 +38,9 @@ class Season extends BaseClass
 	
 	private function initValueState()
 	{
-		$ValueState = array("year" => "", 
-							"name" => "",
-							"isCurrent" => "");
+	    $this->m_valueState = array("year" => "", 
+						          "name" => "",
+							      "isCurrent" => "");
 	}
     
     public function getIsCurrent()
@@ -53,40 +55,47 @@ class Season extends BaseClass
         }
     }
     
-    public function validate()
+    public function validate($mySql)
     {
 		$this->initValueState();
 		
         if (!is_numeric($this->Year))
 		{
-			$ValueState["year"] = "L'année doit être un nombre valide";
+			$this->m_valueState["year"] = "L'année doit être un nombre valide.";
 		}
+        else if($this::$PageMode == Constants::PAGE_MODE_ADD)
+        { 
+            if ($mySql->getCount("SELECT * FROM season WHERE season = " . $this->Year) > 0)
+            {
+                $this->m_valueState["year"] = "L'année doit être unique.";
+            }
+        }
 		
 		if (strlen($this->Name) > 15)
 		{
-			$ValueState["name"] = "Le nom ne peut dépasser 15 caractères";
+			$this->m_valueState["name"] = "Le nom ne peut dépasser 15 caractères.";
 		}
 		else if (strlen($this->Name) == 0)
 		{
-			$ValueState["name"] = "Le nom ne peut être vide";
+			$this->m_valueState["name"] = "Le nom ne peut être vide.";
 		}
     }
 	
 	public function getHasError()
 	{
-		return $ValueState["year"] <> "" or 
-			   $ValueState["name"] <> "" or
-			   $ValueState["isCurrent"] <> "" or;
+		return $this->m_valueState["year"] <> "" or 
+			   $this->m_valueState["name"] <> "" or
+			   $this->m_valueState["isCurrent"] <> "";
 	}
 	
 	public function attributeHasError($attName)
 	{
-		return $ValueState["year"] <> "";
+		return $this->m_valueState[$attName] <> "";
 	}
 	
 	public function getAttributeError($attName)
 	{
-		return $ValueState["year"];
+		return $this->m_valueState[$attName];
 	}
 } 
 ?>

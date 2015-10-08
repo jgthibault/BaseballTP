@@ -68,6 +68,17 @@ class MySql
 		
 		return null;
 	}
+    
+    function bind($stmt, $att, $params)
+	{
+        $param;
+        foreach($params as &$value)
+        { 
+            $param += $value . ",";
+        }
+        
+        $stmt->bind_param($att, $param);
+	}
 
     /////////////////////////////////////////////
     ///Description: Get the number of records of

@@ -7,3 +7,22 @@
 [1004/212725:ERROR:main_delegate.cc(564)] Could not load locale pak for en-US
 [1004/212725:ERROR:main_delegate.cc(571)] Could not load cef.pak
 [1004/212725:ERROR:main_delegate.cc(588)] Could not load cef_100_percent.pak
+[1006/075346:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133757:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133802:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133807:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133812:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133817:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133822:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133827:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133832:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133837:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133842:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133847:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133847:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133847:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133848:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133852:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133852:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133852:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.
+[1007/133853:WARNING:dns_config_service_win.cc(654)] Failed to read DnsConfig.

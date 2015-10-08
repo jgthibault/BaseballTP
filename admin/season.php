@@ -16,6 +16,7 @@
 		include("../php/MySql.php");
 		include("../php/LocalDefinition.php");
         include("../php/Const.php");
+        include("../php/BaseClass.php");
         include("../php/Season.php");
 
         LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_GENERAL, Constants::ADMIN_MENU_2_SEASON);

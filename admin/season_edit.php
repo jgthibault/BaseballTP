@@ -16,6 +16,7 @@
 		include("../php/MySql.php");
 		include("../php/LocalDefinition.php");
         include("../php/Const.php");
+        include("../php/BaseClass.php");
         include("../php/Season.php");
 
         LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_GENERAL, Constants::ADMIN_MENU_2_SEASON);
@@ -34,14 +35,20 @@
                         <h4>saison - <?php  $season = new Season();
 											if (isset($_POST["year"]))
 											{
-												$season->initProperty($_POST["year"], $_POST["name"], $_POST["isCurrent"]);
-												$season->validate();
+												$season->initProperty($_POST["year"], $_POST["name"], (isset($_POST["isCurrent"]) ? $_POST["isCurrent"] : false));
+												$season->validate($mySql);
 												
 												if (!$season->getHasError())
 												{
-													if (Season::PageMode = Constants::PAGE_MODE_EDIT)
+													if (Season::$PageMode == Constants::PAGE_MODE_EDIT)
 													{
-														$mySql->prepare("UPDATE season SET season = ?, name = ?, iscurrent = ? WHERE 
+													   
+														$stmt = $mySql->prepare("UPDATE season SET season = ?, name = ?, iscurrent = ? WHERE");
+                                                        $mySql->bind($stmt, "iii", array($_POST["year"], 
+                                                                                         $_POST["name"], 
+                                                                                         (isset($_POST["isCurrent"]) ? $_POST["isCurrent"] : false)));
+                                                        $stmt->execute();
+                                                        $stmt->close(); 
 													}
 													else
 													{
@@ -56,12 +63,12 @@
                                                 $season->initDB($_GET["year"], $mySql);
                                                 
 												echo $season->Year;
-                                                Season::PageMode = Constants::PAGE_MODE_EDIT;
+                                                Season::$PageMode = Constants::PAGE_MODE_EDIT;
                                             }
                                             else
                                             {
                                                 echo "[Nouvelle]";
-                                                Season::PageMode = Constants::PAGE_MODE_ADD;
+                                                Season::$PageMode = Constants::PAGE_MODE_ADD;
                                             }
                                       ?>
                         </h4>
@@ -97,8 +104,8 @@
                                 <div class="small-6 columns">
                                     <label>Saison courante
                                         <div class="switch">
-                                            <input id="isCurrent" name="isCurrent" type="checkbox" <?php if ($season->IsCurrent) { echo "checked";} ?> /> 
-                                            <label for="isCurrent"></label>
+                                            <input id="test" name="isCurrent" type="checkbox" <?php if ($season->IsCurrent) { echo "checked";} ?> /> 
+                                            <label for="test"></label>
                                         </div> 
                                     </label>
                                 </div>

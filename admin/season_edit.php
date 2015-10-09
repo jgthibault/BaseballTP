@@ -37,23 +37,21 @@
 											{
 												$season->initProperty($_POST["year"], $_POST["name"], (isset($_POST["isCurrent"]) ? $_POST["isCurrent"] : false));
 												$season->validate($mySql);
+												$season->PageMode = $_POST["pageMode"];
 												
 												if (!$season->getHasError())
 												{
-													if (Season::$PageMode == Constants::PAGE_MODE_EDIT)
+													if ($season->PageMode == Constants::PAGE_MODE_EDIT)
 													{
 													   
-														$stmt = $mySql->prepare("UPDATE season SET season = ?, name = ?, iscurrent = ? WHERE");
-                                                        $mySql->bind($stmt, "iii", array($_POST["year"], 
-                                                                                         $_POST["name"], 
-                                                                                         (isset($_POST["isCurrent"]) ? $_POST["isCurrent"] : false)));
-                                                        $stmt->execute();
-                                                        $stmt->close(); 
+														$season->update();
 													}
 													else
 													{
-														
+														$season->addNew();
 													}
+													header('Location: season.php');
+													exit;
 												}
 												
 												echo $season->Year;
@@ -63,12 +61,12 @@
                                                 $season->initDB($_GET["year"], $mySql);
                                                 
 												echo $season->Year;
-                                                Season::$PageMode = Constants::PAGE_MODE_EDIT;
+                                                $season->PageMode = Constants::PAGE_MODE_EDIT;
                                             }
                                             else
                                             {
                                                 echo "[Nouvelle]";
-                                                Season::$PageMode = Constants::PAGE_MODE_ADD;
+                                                $season->PageMode = Constants::PAGE_MODE_ADD;
                                             }
                                       ?>
                         </h4>
@@ -109,9 +107,9 @@
                                         </div> 
                                     </label>
                                 </div>
+								<input type="text" name="pageMode" value="<?php echo $season->PageMode; ?>" hidden />
                             </div>
                             <div class="row">
-                                
                                     <div class="small-2 columns right">
                                         <a href="season.php" class="button right">Annuler</a>
                                     </div>

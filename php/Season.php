@@ -5,7 +5,7 @@ class Season extends BaseClass
     public $Year;
     public $Name;
     public $IsCurrent;
-	public static $PageMode;
+	public $PageMode;
     
     private $m_valueState;
 	    
@@ -39,8 +39,8 @@ class Season extends BaseClass
 	private function initValueState()
 	{
 	    $this->m_valueState = array("year" => "", 
-						          "name" => "",
-							      "isCurrent" => "");
+						            "name" => "",
+							        "isCurrent" => "");
 	}
     
     public function getIsCurrent()
@@ -80,6 +80,20 @@ class Season extends BaseClass
 			$this->m_valueState["name"] = "Le nom ne peut être vide.";
 		}
     }
+	
+	public function update($mySql)
+	{
+		$mySql->prepare("UPDATE season SET name = ?, iscurrent = ? WHERE year = ?", "iii", array($this->Name, 
+																								 $this->IsCurrent,
+																								 $this->Year));
+	}
+	
+	public function addNew($mySql)
+	{
+		$mySql->prepare("INSERT INTO season (Year, Name, IsCurrent) VALUES (?, ?, ?)", "iii", array($this->Year, 
+																									$this->Name, 
+																									$this->IsCurrent));
+	}
 	
 	public function getHasError()
 	{

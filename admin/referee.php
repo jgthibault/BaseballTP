@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../foundation-icons/foundation-icons.css" />
     <script src="../js/vendor/modernizr.js"></script>
     <script src="../js/jquery-1.11.3.min.js"></script>
-    <script src="../js/datatable.min.js"></script>
 </head>
 <body>
     <?php
@@ -18,9 +17,9 @@
 		include("../php/LocalDefinition.php");
         include("../php/Const.php");
         include("../php/BaseClass.php");
-        include("../php/Season.php");
+        include("../php/Referee.php");
 
-        LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_GENERAL, Constants::ADMIN_MENU_2_SEASON);
+        LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_GENERAL, Constants::ADMIN_MENU_2_REFEREE);
             
         include("large_menu.php");
         /*include("small_menu_start.php");*/
@@ -29,7 +28,7 @@
         
         if(isset($_GET["delete"]))
         {
-            $mySql->execute("DELETE FROM season WHERE Year = " . $_GET["delete"]);
+            $mySql->execute("DELETE FROM referee WHERE Id = " . $_GET["delete"]);
         }
 
     ?>
@@ -43,30 +42,29 @@
                         <table id="saison" width="100%">
                             <thead>
                             <tr>
-                                <th>Action</th><th>Année</th><th>Description</th><th>Courrante</th>
+                                <th>Action</th><th>Prénom</th><th>Nom de famille</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                                if ($result = $mySql->execute("SELECT * FROM season ORDER BY Year DESC")) 
+                                if ($result = $mySql->execute("SELECT * FROM referee ORDER BY LastName")) 
                         		{                       			
-                        			while ($row = $result->fetch_object("Season")) 
+                        			while ($row = $result->fetch_object("Referee")) 
                         			{
                 			 ?>
                                         <tr>
                             				<td>
-                                                <a title="Modifier" href="season_edit.php?year=<?php echo $row->Year; ?>">
+                                                <a title="Modifier" href="referee_edit.php?id=<?php echo $row->Id; ?>">
                                                     <i class="fi-page-edit size-32"> </i>
                                                 </a> 
                                                 <a title="Supprimer" 
-                                                    href="season.php?delete=<?php echo $row->Year; ?>"
+                                                    href="referee.php?delete=<?php echo $row->Id; ?>"
                                                     onclick="return confirm('Voulez-vous supprimer l'année?');">
                                                     <i class="fi-page-remove size-32"></i>
                                                 </a>
                                             </td>
-                                            <td> <?php echo $row->Year; ?> </td>
-                                            <td> <?php echo $row->Name; ?> </td>
-                                            <td> <?php echo $row->getIsCurrent(); ?> </td>
+                                            <td> <?php echo $row->FirstName; ?> </td>
+                                            <td> <?php echo $row->LastName; ?> </td>
                                         </tr>
                              <?php          
                                     }  			
@@ -80,7 +78,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <a href="season_edit.php" class="button right">Ajouter</a>
+                    <a href="referee_edit.php" class="button right">Ajouter</a>
                 </div>
 
             </section>
@@ -93,8 +91,8 @@
 
         $('#saison').datatable({
             pageSize: 5,
-            sort: [false, true, true, false],
-            filters: [false, true, true, 'select'],
+            sort: [true, true],
+            filters: [true, true],
             filterText: 'Filtre '
         }) ;
 </script>

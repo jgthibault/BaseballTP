@@ -21,7 +21,8 @@
 						<li class="has-dropdown <?php echo LocalDef::isFirstActive(Constants::ADMIN_MENU_1_GENERAL); ?>">
 							<a href="#">Général</a>
 							<ul class="dropdown">
-								<li class="<?php echo LocalDef::isFirstActive(Constants::ADMIN_MENU_2_SEASON); ?>"><a href="#">Saison</a></li>
+								<li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_SEASON); ?>"><a href="season.php">Saison</a></li>
+                                <li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_REFEREE); ?>"><a href="referee.php">Arbitre</a></li>
 							</ul>
 						</li>
                         <li><a href="standing.php">Équipes</a></li>

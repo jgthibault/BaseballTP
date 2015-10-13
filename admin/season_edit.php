@@ -35,7 +35,7 @@
                         <h4>saison - <?php  $season = new Season();
 											if (isset($_POST["year"]))
 											{
-												$season->initProperty($_POST["year"], $_POST["name"], (isset($_POST["isCurrent"]) ? $_POST["isCurrent"] : false));
+												$season->initProperty($_POST["year"], $_POST["name"], isset($_POST["isCurrent"]));
 												$season->validate($mySql);
 												$season->PageMode = $_POST["pageMode"];
 												
@@ -44,11 +44,11 @@
 													if ($season->PageMode == Constants::PAGE_MODE_EDIT)
 													{
 													   
-														$season->update();
+														$season->update($mySql);
 													}
 													else
 													{
-														$season->addNew();
+														$season->addNew($mySql);
 													}
 													header('Location: season.php');
 													exit;
@@ -76,7 +76,10 @@
                             <div class="row">
                                 <div class="small-6 columns">
                                     <label <?php if ($season->attributeHasError('year')) { echo "class='error'";} ?>>Année
-                                        <input type="text" name="year" value="<?php echo $season->Year; ?>" />
+                                        <input type="text" 
+                                               name="year" 
+                                               value="<?php echo $season->Year; ?>" 
+                                               <?php if($season->PageMode == Constants::PAGE_MODE_EDIT) {echo "readonly";} ?>/>
                                     </label>
 									<?php 
 										if ($season->attributeHasError('year')) 
@@ -93,7 +96,7 @@
 									<?php 
 										if ($season->attributeHasError('name')) 
 										{
-											echo "<small class='error'>" . $season->getAttributeError("year") . "</small>";
+											echo "<small class='error'>" . $season->getAttributeError("name") . "</small>";
 										} 
 									?>
                                 </div>
@@ -102,12 +105,12 @@
                                 <div class="small-6 columns">
                                     <label>Saison courante
                                         <div class="switch">
-                                            <input id="test" name="isCurrent" type="checkbox" <?php if ($season->IsCurrent) { echo "checked";} ?> /> 
+                                            <input id="test" name="isCurrent" type="checkbox" <?php if ($season->IsCurrent == 1) { echo "checked";} ?> /> 
                                             <label for="test"></label>
                                         </div> 
                                     </label>
                                 </div>
-								<input type="text" name="pageMode" value="<?php echo $season->PageMode; ?>" hidden />
+								<input type="hidden" name="pageMode" value="<?php echo $season->PageMode; ?>"  />
                             </div>
                             <div class="row">
                                     <div class="small-2 columns right">

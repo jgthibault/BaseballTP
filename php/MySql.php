@@ -52,7 +52,7 @@ class MySql
     function execute($query)
     {
         if ($result = $this->mysqli->query($query))
-        {
+        { 
             return $result;
         }
 
@@ -60,27 +60,29 @@ class MySql
     }
 	
 	
-	function prepare($query, $type, $params)
+	function prepare($query, $params) 
 	{
-		if ($stmt = $mysqli->prepare($query))
+		if ($stmt = $this->mysqli->prepare($query))
 		{
-			call_user_func_array('mysqli_stmt_bind_param', array_merge (array($stmt, $type), $param); 
+		    call_user_func_array(array($stmt, "bind_param"), $this->refValues($params));    	
 			$stmt->execute();
 			$stmt->close(); 
 		}
+        
 	}
     
-    function bind($stmt, $att, $params)
-	{
-        $param;
-        foreach($params as &$value)
-        { 
-            $param += $value . ",";
+    function refValues($arr)
+    { 
+        $refs = array();
+ 
+        foreach ($arr as $key => $value)
+        {
+            $refs[$key] = &$arr[$key]; 
         }
-        
-        $stmt->bind_param($att, $param);
-	}
-
+ 
+        return $refs; 
+    }
+    
     /////////////////////////////////////////////
     ///Description: Get the number of records of
     /// a query

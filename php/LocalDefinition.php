@@ -14,12 +14,12 @@ class LocalDef
 	
 	public static function isFirstActive($level)
 	{
-		if ($level = self::$FirstLevelMenu) { return "active"; }		
+		if ($level == self::$FirstLevelMenu) { return "active"; }		
 	}
 	
 	public static function isSecondActive($level)
 	{
-		if ($level = self::$SecondLevelMenu) { return "active"; }		
+		if ($level == self::$SecondLevelMenu) { return "active"; }		
 	}
 }
 ?>

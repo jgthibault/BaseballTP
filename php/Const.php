@@ -9,6 +9,7 @@ class Constants
 	
 	//Second level menus
 	const ADMIN_MENU_2_SEASON = 1;
+    const ADMIN_MENU_2_REFEREE = 2;
 	
     //Page mode
     const PAGE_MODE_ADD = 1;

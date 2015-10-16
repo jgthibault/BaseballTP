@@ -36,9 +36,9 @@
 											if (isset($_POST["year"]))
 											{
 												$season->initProperty($_POST["year"], $_POST["name"], isset($_POST["isCurrent"]));
-												$season->validate($mySql);
 												$season->PageMode = $_POST["pageMode"];
-												
+                                                $season->validate($mySql);
+																								
 												if (!$season->getHasError())
 												{
 													if ($season->PageMode == Constants::PAGE_MODE_EDIT)
@@ -126,18 +126,7 @@
                 </div>
             </section>
 
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/datatable.min.js"></script>
-    <script>
-        $(document).foundation();
-
-        $('#saison').datatable({
-            pageSize: 5,
-            sort: [true, true, true,true,true],
-            filters: [true, true, 'select', true, true],
-            filterText: 'Filtre '
-        }) ;
-</script>
+    <script src="../js/vendor/jquery.js"></script>
+    <script src="../js/foundation.min.js"></script>
 </body>
 </html>

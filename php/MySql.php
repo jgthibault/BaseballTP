@@ -94,7 +94,7 @@ class MySql
     /////////////////////////////////////////////
     function getCount($query)
     {
-        $result = self::execute($query);
+        $result = $this->execute($query);
 
         if ($result != null)
         {

@@ -1,5 +1,5 @@
 <!-- For medium screen -->
-<section class="navigation-section show-for-medium-up">
+<section class="navigation-section">
 
     <div>
 

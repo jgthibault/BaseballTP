@@ -55,14 +55,14 @@ class Season extends BaseClass
     public function validate($mySql)
     {
 		$this->initValueState();
-		
+        		
         if (!is_numeric($this->Year))
 		{
 			$this->m_valueState["year"] = "L'année doit être un nombre valide.";
 		}
         else if($this->PageMode == Constants::PAGE_MODE_ADD)
         { 
-            if ($mySql->getCount("SELECT * FROM season WHERE season = " . $this->Year) > 0)
+            if ($mySql->getCount("SELECT * FROM season WHERE year = " . $this->Year) > 0)
             {
                 $this->m_valueState["year"] = "L'année doit être unique.";
             }

@@ -28,8 +28,8 @@
         $mySql = new MySql();
         
         if(isset($_GET["delete"]))
-        {
-            $mySql->execute("DELETE FROM season WHERE Year = " . $_GET["delete"]);
+        { 
+            $mySql->execute("DELETE FROM season WHERE Year = " . $_GET["delete"]); 
         }
 
     ?>
@@ -39,7 +39,7 @@
                 <div class="row">
                     <h4>saisons</h4>
                 </div>
-                    <div class="row">					
+                    <div class="row">				
                         <table id="saison" width="100%">
                             <thead>
                             <tr>
@@ -58,9 +58,9 @@
                                                 <a title="Modifier" href="season_edit.php?year=<?php echo $row->Year; ?>">
                                                     <i class="fi-page-edit size-32"> </i>
                                                 </a> 
-                                                <a title="Supprimer" 
-                                                    href="season.php?delete=<?php echo $row->Year; ?>"
-                                                    onclick="return confirm('Voulez-vous supprimer l'année?');">
+                                                 <a title="Supprimer"  
+                                                   onclick="javascript:return confirm('Voulez-vous supprimer l\'enregistrement?');" 
+                                                   href='season.php?delete=<?php echo $row->Year; ?>'>
                                                     <i class="fi-page-remove size-32"></i>
                                                 </a>
                                             </td>
@@ -85,9 +85,9 @@
 
             </section>
 
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/datatable.min.js"></script>
+    <script src="../js/vendor/jquery.js"></script>
+    <script src="../js/foundation.min.js"></script>
+    <script src="../js/datatable.min.js"></script>
     <script>
         $(document).foundation();
 

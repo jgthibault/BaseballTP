@@ -2,10 +2,14 @@
 
 class Referee extends BaseClass
 {
-    public $Id;
     public $FirstName;
     public $LastName;
-	
+    public $Id;
+    
+    public function getFullName()
+    {
+        return $this->FirstName . " " . $this->LastName;
+    }
 	    
     function __construct()
     {
@@ -27,75 +31,57 @@ class Referee extends BaseClass
     
     private function setProperty($id, $firstName, $lastName)
     {
-        $this->Id = $id;
         $this->FirstName = $firstName;
         $this->LastName = $lastName;
+        $this->Id = $id;
 		
 		$this->initValueState();
     }
 	
 	private function initValueState()
 	{
-	    $this->m_valueState = array("id" => "", 
-						            "firstName" => "",
-							        "lastName" => "");
+	    $this->m_valueState = array("firstName" => "", 
+						            "lastName" => "");
 	}
-       
+    
+    
     public function validate($mySql)
     {
 		$this->initValueState();
-		
-        if (!is_numeric($this->Year))
+        		
+
+		if (strlen($this->FirstName) > 45)
 		{
-			$this->m_valueState["year"] = "L'année doit être un nombre valide.";
+			$this->m_valueState["firstName"] = "Le prÃ©nom ne peut dÃ©passer 45 caractÃ¨res.";
 		}
-        else if($this->PageMode == Constants::PAGE_MODE_ADD)
-        { 
-            if ($mySql->getCount("SELECT * FROM season WHERE season = " . $this->Year) > 0)
-            {
-                $this->m_valueState["year"] = "L'année doit être unique.";
-            }
-        }
-		
-		if (strlen($this->Name) > 50)
+		else if (strlen($this->FirstName) == 0)
 		{
-			$this->m_valueState["name"] = "Le nom ne peut dépasser 50 caractères.";
+			$this->m_valueState["firstName"] = "Le prÃ©nom ne peut Ãªtre vide.";
 		}
-		else if (strlen($this->Name) == 0)
+        
+        if (strlen($this->LastName) > 45)
 		{
-			$this->m_valueState["name"] = "Le nom ne peut être vide.";
+			$this->m_valueState["lastName"] = "Le prÃ©nom ne peut dÃ©passer 45 caractÃ¨res.";
+		}
+		else if (strlen($this->LastName) == 0)
+		{
+			$this->m_valueState["lastName"] = "Le prÃ©nom ne peut Ãªtre vide.";
 		}
     }
 	
 	public function update($mySql)
 	{
-		$mySql->prepare("UPDATE season SET Name = ?, IsCurrent = ? WHERE Year = ?", array("sii", 
-                                                                                          $this->Name, 
-																					      ($this->IsCurrent) ? 1 : 0,
-																						  $this->Year));
-                                                                                          
-        //On désactive tous les autres saisons courantes si la saison es courante
-        if ($this->IsCurrent == 1)
-        {
-            $mySql->prepare("UPDATE season SET IsCurrent = 0 WHERE Year <> ?", array("i", 
-                                                                                     $this->Year));
-        }
-        
+		$mySql->prepare("UPDATE referee SET FirstName = ?, LastName = ? WHERE Id = ?", array("ssi", 
+                                                                                          $this->FirstName, 
+																					      $this->LastName,
+																						  $this->Id));
 	}
 	
 	public function addNew($mySql)
 	{
-		$mySql->prepare("INSERT INTO season (Year, Name, IsCurrent) VALUES (?, ?, ?)", array("isi",
-                                                                                             $this->Year, 
-																							 $this->Name, 
-																							 $this->IsCurrent));
-                                                                                             
-        //On désactive tous les autres saisons courantes si la saison es courante
-        if ($this->IsCurrent == 1)
-        {
-            $mySql->prepare("UPDATE season SET IsCurrent = 0 WHERE Year <> ?", array("i", 
-                                                                                     $this->Year));
-        }                                                                                             
+		$mySql->prepare("INSERT INTO referee (FirstName, LastName) VALUES (?, ?)", array("ss",
+                                                                                         $this->FirstName, 
+																						 $this->LastName));                                                                                             
 	}
 } 
 ?>

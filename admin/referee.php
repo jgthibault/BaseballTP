@@ -39,7 +39,7 @@
                     <h4>saisons</h4>
                 </div>
                     <div class="row">					
-                        <table id="saison" width="100%">
+                        <table id="referee" width="100%">
                             <thead>
                             <tr>
                                 <th>Action</th><th>Prénom</th><th>Nom de famille</th>
@@ -59,7 +59,7 @@
                                                 </a> 
                                                 <a title="Supprimer" 
                                                     href="referee.php?delete=<?php echo $row->Id; ?>"
-                                                    onclick="return confirm('Voulez-vous supprimer l'année?');">
+                                                    onclick="return confirm('Voulez-vous supprimer l\'enregistrement?');">
                                                     <i class="fi-page-remove size-32"></i>
                                                 </a>
                                             </td>
@@ -83,16 +83,16 @@
 
             </section>
 
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/datatable.min.js"></script>
+    <script src="../js/vendor/jquery.js"></script>
+    <script src="../js/foundation.min.js"></script>
+    <script src="../js/datatable.min.js"></script>
     <script>
         $(document).foundation();
 
-        $('#saison').datatable({
-            pageSize: 5,
-            sort: [true, true],
-            filters: [true, true],
+        $('#referee').datatable({
+            pageSize: 15,
+            sort: [false, true, true],
+            filters: [false, true, true],
             filterText: 'Filtre '
         }) ;
 </script>

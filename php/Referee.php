@@ -61,11 +61,11 @@ class Referee extends BaseClass
         
         if (strlen($this->LastName) > 45)
 		{
-			$this->m_valueState["lastName"] = "Le prénom ne peut dépasser 45 caractères.";
+			$this->m_valueState["lastName"] = "Le nom de famille ne peut dépasser 45 caractères.";
 		}
 		else if (strlen($this->LastName) == 0)
 		{
-			$this->m_valueState["lastName"] = "Le prénom ne peut être vide.";
+			$this->m_valueState["lastName"] = "Le de famille ne peut être vide.";
 		}
     }
 	

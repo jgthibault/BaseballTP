@@ -22,7 +22,8 @@
 							<a href="#">Général</a>
 							<ul class="dropdown">
 								<li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_SEASON); ?>"><a href="season.php">Saison</a></li>
-                                <li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_REFEREE); ?>"><a href="referee.php">Arbitre</a></li>
+                                <li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_REFEREE); ?>"><a href="referee.php">Arbitres</a></li>
+                                <li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_MARKER); ?>"><a href="marker.php">Marqueurs</a></li>
 							</ul>
 						</li>
                         <li><a href="standing.php">Équipes</a></li>

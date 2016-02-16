@@ -1,0 +1,69 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administration | Baseball Trois-Pistoles</title>
+    <link rel="stylesheet" href="../css/foundation.css" />
+    <link rel="stylesheet" href="../css/datatable.min.css" />
+    <link rel="stylesheet" href="../foundation-icons/foundation-icons.css" />
+    <script src="../js/vendor/modernizr.js"></script>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <!-- For medium screen -->
+<section class="navigation-section">
+
+    <div>
+
+        <div class="columns">
+
+            <!-- TOP BAR INITIALIZATION -->
+            <nav class="top-bar" data-topbar>
+                <ul class="title-area">
+                    <li class="name">
+                        
+                    </li>
+                    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+                </ul>
+
+                <!-- TOP BAR MENU ELEMENTS -->
+                <section class="top-bar-section">
+                    <!-- Right Nav Section -->
+                    <ul class="right">
+						<li class="has-dropdown active">
+							<a href="#">Général</a>
+							<ul class="dropdown">
+								<li class=""><a href="season.php">Saison</a></li>
+                                <li class=""><a href="referee.php">Arbitres</a></li>
+                                <li class="active"><a href="marker.php">Marqueurs</a></li>
+							</ul>
+						</li>
+                        <li><a href="standing.php">Équipes</a></li>
+                        <li><a href="teams.php">Arbitres</a></li>
+						<li><a href="tournement.php">Tournoi</a></li>
+                    </ul>
+
+                    <!-- Left Nav Section -->
+                    <ul class="left">
+                        <li>
+                            <a href="#"></a>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
+
+        </div>
+    </div>
+</section><br />
+<font size='1'><table class='xdebug-error xe-fatal-error' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Fatal error: Class 'mysqli' not found in C:\wamp\www\BaseballTP\php\MySql.php on line <i>28</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0287</td><td bgcolor='#eeeeec' align='right'>137528</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='C:\wamp\www\BaseballTP\admin\marker.php' bgcolor='#eeeeec'>..\marker.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0380</td><td bgcolor='#eeeeec' align='right'>174744</td><td bgcolor='#eeeeec'>MySql->__construct(  )</td><td title='C:\wamp\www\BaseballTP\admin\marker.php' bgcolor='#eeeeec'>..\marker.php<b>:</b>27</td></tr>
+</table></font>
+PHP Fatal error:  Class 'mysqli' not found in C:\wamp\www\BaseballTP\php\MySql.php on line 28
+PHP Stack trace:
+PHP   1. {main}() C:\wamp\www\BaseballTP\admin\marker.php:0
+PHP   2. MySql->__construct() C:\wamp\www\BaseballTP\admin\marker.php:27

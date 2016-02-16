@@ -19,7 +19,7 @@ class Marker extends BaseClass
     
     public function initProperty($id, $firstName, $lastName, $birth)
     {   
-        $this->setProperty($id, $firstName, $lastName, strtotime($birth));         
+        $this->setProperty($id, $firstName, $lastName, $birth);         
     }
     
     public function initDB($id, $mysql)
@@ -91,7 +91,7 @@ class Marker extends BaseClass
 	
 	public function addNew($mySql)
 	{
-		$mySql->prepare("INSERT INTO referee (FirstName, LastName, Birth) VALUES (?, ?, ?)", 
+	    $mySql->prepare("INSERT INTO marker (FirstName, LastName, Birth) VALUES (?, ?, ?)", 
                         array("ssi",
                               $this->FirstName, 
                               $this->LastName,

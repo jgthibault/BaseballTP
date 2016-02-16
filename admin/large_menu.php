@@ -26,7 +26,13 @@
                                 <li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_MARKER); ?>"><a href="marker.php">Marqueurs</a></li>
 							</ul>
 						</li>
-                        <li><a href="standing.php">Équipes</a></li>
+                        <li class="has-dropdown <?php echo LocalDef::isFirstActive(Constants::ADMIN_MENU_1_TEAM); ?>">
+                            <a href="#">Équipes</a>
+                            <ul class="dropdown">
+								<li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_HOME_TEAM); ?>"><a href="home_team.php">Trois-Pistoles</a></li>
+                                <li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_AWAY_TEAM); ?>"><a href="away_team.php">Adversaires</a></li>
+							</ul>
+                        </li>
                         <li><a href="teams.php">Arbitres</a></li>
 						<li><a href="tournement.php">Tournoi</a></li>
                     </ul>

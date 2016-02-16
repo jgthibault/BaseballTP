@@ -104,7 +104,12 @@
                                     <label <?php if ($marker->attributeHasError('birth')) { echo "class='error'";} ?>>Date de naisance
                                         <input type="date" 
                                                name="birth" 
-                                               value="<?php echo  $marker->Birth; ?>" />
+                                               value="<?php 
+                                                          if ($marker->Birth <> 0)
+                                                          {
+                                                               echo date("Y-m-d", $marker->Birth); 
+                                                          } 
+                                                      ?>" />
                                     </label>
 									<?php 
 										if ($marker->attributeHasError('birth')) 
@@ -121,7 +126,7 @@
                             </div>
                             <div class="row">
                                     <div class="small-2 columns right">
-                                        <a href="season.php" class="button right">Annuler</a>
+                                        <a href="marker.php" class="button right">Annuler</a>
                                     </div>
                                     <div class="small-2 columns right">
                                         <a href="javascript:;" onclick="document.getElementById('form_marker').submit();" class="button right">Enregistrer</a>

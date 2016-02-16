@@ -6,11 +6,17 @@ class Constants
 	
 	//First level menus
 	const ADMIN_MENU_1_GENERAL = 1;
+    const ADMIN_MENU_1_TEAM = 2;
 	
 	//Second level menus
+    //Général
 	const ADMIN_MENU_2_SEASON = 1;
     const ADMIN_MENU_2_REFEREE = 2;
     const ADMIN_MENU_2_MARKER = 3;
+    
+    //Équipe
+    const ADMIN_MENU_2_HOME_TEAM = 1;
+    const ADMIN_MENU_2_AWAY_TEAM = 2;
 	
     //Page mode
     const PAGE_MODE_ADD = 1;

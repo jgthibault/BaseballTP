@@ -19,10 +19,10 @@
 		include("../php/LocalDefinition.php");
         include("../php/Const.php");
         include("../php/BaseClass.php");
-        include("../php/Marker.php");
-        
+        include("../php/Category.php");
+        include("../php/HomeTeam.php");       
 
-        LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_GENERAL, Constants::ADMIN_MENU_2_MARKER);
+        LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_TEAM, Constants::ADMIN_MENU_2_HOME_TEAM);
             
         include("large_menu.php");
         /*include("small_menu_start.php");*/
@@ -31,7 +31,7 @@
         
         if(isset($_GET["delete"]))
         {
-            $mySql->execute("DELETE FROM marker WHERE Id = " . $_GET["delete"]);
+            $mySql->execute("DELETE FROM home_team WHERE Id = " . $_GET["delete"]);
         }
 
     ?>
@@ -39,42 +39,35 @@
             <section class="main-section">
                 <div class="small-12 columns">
                 <div class="row">
-                    <h4>marqueurs</h4>
+                    <h4>équipes</h4>
                 </div>
                     <div class="row">					
-                        <table id="Marker" width="100%">
+                        <table id="team" width="100%">
                             <thead>
                             <tr>
-                                <th>Action</th><th>Prénom</th><th>Nom de famille</th><th>Naissance</th>
+                                <th>Action</th><th>Nom</th><th>Catégorie</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                                if ($result = $mySql->execute("SELECT * FROM marker ORDER BY LastName")) 
+                                if ($result = $mySql->execute("SELECT * FROM home_team ORDER BY CategoryId")) 
                         		{                       			
-                        			while ($row = $result->fetch_object("Marker")) 
+                        			while ($row = $result->fetch_object("HomeTeam")) 
                         			{
                 			 ?>
                                         <tr>
                             				<td>
-                                                <a title="Modifier" href="marker_edit.php?id=<?php echo $row->Id; ?>">
+                                                <a title="Modifier" href="home_team_edit.php?id=<?php echo $row->Id; ?>">
                                                     <i class="fi-page-edit size-32"> </i>
                                                 </a> 
                                                 <a title="Supprimer" 
-                                                    href="marker.php?delete=<?php echo $row->Id; ?>"
+                                                    href="home_team.php?delete=<?php echo $row->Id; ?>"
                                                     onclick="return confirm('Voulez-vous supprimer l\'enregistrement?');">
                                                     <i class="fi-page-remove size-32"></i>
                                                 </a>
                                             </td>
-                                            <td> <?php echo $row->FirstName; ?> </td>
-                                            <td> <?php echo $row->LastName; ?> </td>
-                                            <td> <?php 
-                                                    if ($row->Birth <> 0)
-                                                    {
-                                                        echo date("Y-m-d", $row->Birth);
-                                                    }
-                                                     
-                                                 ?> </td>
+                                            <td> <?php echo $row->Name; ?> </td>
+                                            <td> <?php echo $row->getCategoryDesc($mySql); ?> </td>
                                         </tr>
                              <?php          
                                     }  			
@@ -88,7 +81,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <a href="marker_edit.php" class="button right">Ajouter</a>
+                    <a href="home_team_edit.php" class="button right">Ajouter</a>
                 </div>
 
             </section>
@@ -99,10 +92,10 @@
     <script>
         $(document).foundation();
 
-        $('#marker').datatable({
+        $('#team').datatable({
             pageSize: 15,
-            sort: [false, true, true, true],
-            filters: [false, true, true, true],
+            sort: [false, true, true],
+            filters: [false, true, true],
             filterText: 'Filtre '
         }) ;
 </script>

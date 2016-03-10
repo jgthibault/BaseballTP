@@ -46,7 +46,7 @@ class Schedule extends BaseClass
 		
 	}
     
-    public function initProperty($id, $seasonId, $categoryId, $teamId, $awayTeamId, $isTPHome, $date, $stade, $city, $refereeId1, $refereeId2, $refereeId3, $refereeId4, $markerId1, $markerId2, $pointTP, $pointAwayTeam,s $mysql)
+    public function initProperty($id, $seasonId, $categoryId, $teamId, $awayTeamId, $isTPHome, $date, $stade, $city, $refereeId1, $refereeId2, $refereeId3, $refereeId4, $markerId1, $markerId2, $pointTP, $pointAwayTeam, $mysql)
     {   
         $this->setProperty($id, $seasonId, $categoryId, $teamId, $awayTeamId, $isTPHome, $date, $stade, $city, $refereeId1, $refereeId2, $refereeId3, $refereeId4, $markerId1, $markerId2, $pointTP, $pointAwayTeam);
         $this->loadObject($mysql);         
@@ -82,7 +82,7 @@ class Schedule extends BaseClass
         //season
         if ($this->SeasonId <> 0)
         {
-            $result = $mysql->execute("SELECT * FROM season WHERE Id = " . $this->SeasonId);
+            $result = $mysql->execute("SELECT * FROM season WHERE year = " . $this->SeasonId);
             $this->Season = $result->fetch_object("Season");
         }
         
@@ -187,7 +187,9 @@ class Schedule extends BaseClass
                                     "refereeId3" => "",
                                     "refereeId4" => "",
                                     "markerId1" => "",
-                                    "markerId2" => "",);
+                                    "markerId2" => "",
+                                    "pointTp" => "",
+                                    "pointAwayTeam" => "",);
 	}
     
     public function validate($mySql)
@@ -267,14 +269,30 @@ class Schedule extends BaseClass
 	
 	public function addNew($mySql)
 	{
+	   echo  $this->SeasonId . " - " . 
+							  $this->CategoryId . " - " . 
+                              $this->TeamId . " - " . 
+                              $this->IsTPHome . " - " . 
+                              $this->AwayTeamId . " - " . 
+                              $this->Date . " - " . 
+                              $this->Stade . " - " . 
+                              $this->City . " - " . 
+                              $this->MarkerId1 . " - " . 
+                              $this->MarkerId2 . " - " . 
+                              $this->RefereeId1 . " - " . 
+                              $this->RefereeId2 . " - " . 
+                              $this->RefereeId3 . " - " . 
+                              $this->RefereeId4 . " - " . 
+                              $this->PointTP . " - " . 
+                              $this->PointAwayTeam;
 	    $mySql->prepare("INSERT INTO schedule (SeasonId, 
                                                CategoryId, 
                                                TeamId, 
                                                IsTPHome, 
                                                AwayTeamId, 
                                                Date, 
-                                               stade, 
-                                               city, 
+                                               Stade, 
+                                               City, 
                                                MarkerId1, 
                                                MarkerId2, 
                                                ScheduleId1, 
@@ -290,8 +308,8 @@ class Schedule extends BaseClass
                               $this->IsTPHome,
                               $this->AwayTeamId,
                               $this->Date,
-                              $this->stade,
-                              $this->city,
+                              $this->Stade,
+                              $this->City,
                               $this->MarkerId1,
                               $this->MarkerId2,
                               $this->RefereeId1,

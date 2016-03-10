@@ -47,7 +47,7 @@
                             </thead>
                             <tbody>
                             <?php
-                                if ($result = $mySql->execute("SELECT * FROM referee ORDER BY LastName")) 
+                                if ($result = $mySql->execute("SELECT * FROM referee where void = 0 ORDER BY LastName")) 
                         		{                       			
                         			while ($row = $result->fetch_object("Referee")) 
                         			{

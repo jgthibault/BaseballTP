@@ -9,20 +9,25 @@
     <link rel="stylesheet" href="../foundation-icons/foundation-icons.css" />
     <script src="../js/vendor/modernizr.js"></script>
     <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/datatable.min.js"></script>
 </head>
 <body>
     <?php
-    
-    
         /* Object */
 		include("../php/MySql.php");
 		include("../php/LocalDefinition.php");
         include("../php/Const.php");
         include("../php/BaseClass.php");
+        include("../php/Season.php");
+        include("../php/Category.php");
+        include("../php/AwayTeam.php");
+        include("../php/HomeTeam.php");
+        include("../php/Referee.php");
         include("../php/Marker.php");
+        include("../php/Schedule.php");
         
 
-        LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_GENERAL, Constants::ADMIN_MENU_2_MARKER);
+        LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_SCHEDULE, Constants::ADMIN_MENU_2_GAME);
             
         include("large_menu.php");
         /*include("small_menu_start.php");*/
@@ -30,8 +35,8 @@
         $mySql = new MySql();
         
         if(isset($_GET["delete"]))
-        {
-            $mySql->execute("DELETE FROM marker WHERE Id = " . $_GET["delete"]);
+        { 
+            $mySql->execute("DELETE FROM schedule WHERE Id = " . $_GET["delete"]); 
         }
 
     ?>
@@ -39,42 +44,37 @@
             <section class="main-section">
                 <div class="small-12 columns">
                 <div class="row">
-                    <h4>marqueurs</h4>
+                    <h4>horaire</h4>
                 </div>
-                    <div class="row">					
-                        <table id="Marker" width="100%">
+                    <div class="row">				
+                        <table id="saison" width="100%">
                             <thead>
                             <tr>
-                                <th>Action</th><th>Prénom</th><th>Nom de famille</th><th>Naissance</th>
+                                <th>Action</th><th>Date</th><th>Catégorie</th></th><th>Équipe pistoloise</th><th>Adversaire</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                                if ($result = $mySql->execute("SELECT * FROM marker WHERE void = 0 ORDER BY LastName")) 
+                                if ($result = $mySql->execute("SELECT * FROM schedule ORDER BY Date ASC")) 
                         		{                       			
-                        			while ($row = $result->fetch_object("Marker")) 
+                        			while ($row = $result->fetch_object("Schedule")) 
                         			{
                 			 ?>
                                         <tr>
                             				<td>
-                                                <a title="Modifier" href="marker_edit.php?id=<?php echo $row->Id; ?>">
+                                                <a title="Modifier" href="schedule_edit.php?id=<?php echo $row->Id; ?>">
                                                     <i class="fi-page-edit size-32"> </i>
                                                 </a> 
-                                                <a title="Supprimer" 
-                                                    href="marker.php?delete=<?php echo $row->Id; ?>"
-                                                    onclick="return confirm('Voulez-vous supprimer l\'enregistrement?');">
+                                                 <a title="Supprimer"  
+                                                   onclick="javascript:return confirm('Voulez-vous supprimer l\'enregistrement?');" 
+                                                   href='schedule.php?delete=<?php echo $row->Id; ?>'>
                                                     <i class="fi-page-remove size-32"></i>
                                                 </a>
                                             </td>
-                                            <td> <?php echo $row->FirstName; ?> </td>
-                                            <td> <?php echo $row->LastName; ?> </td>
-                                            <td> <?php 
-                                                    if ($row->Birth <> 0)
-                                                    {
-                                                        echo date("Y-m-d", $row->Birth);
-                                                    }
-                                                     
-                                                 ?> </td>
+                                            <td> <?php echo date("Y-m-d", $row->Date); ?> </td>
+                                            <td> <?php echo $row->CategoryId; ?> </td>
+                                            <td> <?php echo $row->TeamId; ?> </td>
+                                            <td> <?php echo $row->AwayTeamId; ?> </td>
                                         </tr>
                              <?php          
                                     }  			
@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <a href="marker_edit.php" class="button right">Ajouter</a>
+                    <a href="schedule_edit.php" class="button right">Ajouter</a>
                 </div>
 
             </section>
@@ -99,10 +99,10 @@
     <script>
         $(document).foundation();
 
-        $('#marker').datatable({
-            pageSize: 15,
-            sort: [false, true, true, true],
-            filters: [false, true, true, true],
+        $('#saison').datatable({
+            pageSize: 5,
+            sort: [false, true, true, true, true],
+            filters: [false, true, 'select', 'select', 'select', ],
             filterText: 'Filtre '
         }) ;
 </script>

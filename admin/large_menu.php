@@ -33,8 +33,13 @@
                                 <li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_AWAY_TEAM); ?>"><a href="away_team.php">Adversaires</a></li>
 							</ul>
                         </li>
-                        <li><a href="teams.php">Arbitres</a></li>
-						<li><a href="tournement.php">Tournoi</a></li>
+                        <li class="has-dropdown <?php echo LocalDef::isFirstActive(Constants::ADMIN_MENU_1_SCHEDULE); ?>">
+                            <a href="#">Horaire</a>
+                            <ul class="dropdown">
+								<li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_GAME); ?>"><a href="schedule.php">Match</a></li>
+                                <li class="<?php echo LocalDef::isSecondActive(Constants::ADMIN_MENU_2_PRACTICE); ?>"><a href="practice.php">Pratique</a></li>
+							</ul>
+                        </li>
                     </ul>
 
                     <!-- Left Nav Section -->

@@ -1164,12 +1164,12 @@ button, .button {
   display: inline-block;
   padding: 1rem 2rem 1.0625rem 2rem;
   font-size: 1rem;
-  background-color: #008CBA;
-  border-color: #007095;
+  background-color: #aa0000;
+  border-color: #990000;
   color: #FFFFFF;
   transition: background-color 300ms ease-out; }
   button:hover, button:focus, .button:hover, .button:focus {
-    background-color: #007095; }
+    background-color: #990000; }
   button:hover, button:focus, .button:hover, .button:focus {
     color: #FFFFFF; }
   button.secondary, .button.secondary {
@@ -1236,18 +1236,18 @@ button, .button {
   button.round, .button.round {
     border-radius: 1000px; }
   button.disabled, button[disabled], .button.disabled, .button[disabled] {
-    background-color: #008CBA;
-    border-color: #007095;
+    background-color: #aa0000;
+    border-color: #990000;
     color: #FFFFFF;
     box-shadow: none;
     cursor: default;
     opacity: 0.7; }
     button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
-      background-color: #007095; }
+      background-color: #990000; }
     button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
       color: #FFFFFF; }
     button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
-      background-color: #008CBA; }
+      background-color: #aa0000; }
     button.disabled.secondary, button[disabled].secondary, .button.disabled.secondary, .button[disabled].secondary {
       background-color: #e7e7e7;
       border-color: #b9b9b9;
@@ -1855,11 +1855,11 @@ meta.foundation-mq-topbar {
         font-size: 0.8125rem;
         padding-left: 0.9375rem;
         padding-right: 0.9375rem;
-        background-color: #008CBA;
-        border-color: #007095;
+        background-color: #aa0000;
+        border-color: #990000;
         color: #FFFFFF; }
         .top-bar-section ul li > a.button:hover, .top-bar-section ul li > a.button:focus {
-          background-color: #007095; }
+          background-color: #990000; }
         .top-bar-section ul li > a.button:hover, .top-bar-section ul li > a.button:focus {
           color: #FFFFFF; }
       .top-bar-section ul li > a.button.secondary {
@@ -1906,11 +1906,11 @@ meta.foundation-mq-topbar {
       font-size: 0.8125rem;
       padding-left: 0.9375rem;
       padding-right: 0.9375rem;
-      background-color: #008CBA;
-      border-color: #007095;
+      background-color: #aa0000;
+      border-color: #990000;
       color: #FFFFFF; }
       .top-bar-section ul li > button:hover, .top-bar-section ul li > button:focus {
-        background-color: #007095; }
+        background-color: #990000; }
       .top-bar-section ul li > button:hover, .top-bar-section ul li > button:focus {
         color: #FFFFFF; }
       .top-bar-section ul li > button.secondary {
@@ -1958,10 +1958,10 @@ meta.foundation-mq-topbar {
       color: #FFFFFF;
       background: #222222; }
     .top-bar-section ul li.active > a {
-      background: #008CBA;
+      background: #aa0000;
       color: #FFFFFF; }
       .top-bar-section ul li.active > a:hover {
-        background: #0078a0;
+        background: #993333;
         color: #FFFFFF; }
   .top-bar-section .has-form {
     padding: 0.9375rem; }
@@ -2097,12 +2097,12 @@ meta.foundation-mq-topbar {
         background-color: #555555;
         background: #222222; }
     .top-bar-section li.active:not(.has-form) a:not(.button) {
-      background: #008CBA;
+      background: #aa0000;
       color: #FFFFFF;
       line-height: 2.8125rem;
       padding: 0 0.9375rem; }
       .top-bar-section li.active:not(.has-form) a:not(.button):hover {
-        background: #0078a0;
+        background: #993333;
         color: #FFFFFF; }
     .top-bar-section .has-dropdown > a {
       padding-right: 2.1875rem !important; }
@@ -2198,7 +2198,7 @@ meta.foundation-mq-topbar {
     background: #222222;
     color: #FFFFFF; }
   .no-js .top-bar-section ul li:active > a {
-    background: #008CBA;
+    background: #aa0000;
     color: #FFFFFF; }
   .no-js .top-bar-section .has-dropdown:hover > .dropdown {
     position: static !important;
@@ -2228,7 +2228,7 @@ meta.foundation-mq-topbar {
   border-color: gainsboro;
   border-radius: 3px; }
   .breadcrumbs > * {
-    color: #008CBA;
+    color: #aa0000;
     float: left;
     font-size: 0.6875rem;
     line-height: 0.6875rem;
@@ -2237,7 +2237,7 @@ meta.foundation-mq-topbar {
     .breadcrumbs > *:hover a, .breadcrumbs > *:focus a {
       text-decoration: underline; }
     .breadcrumbs > * a {
-      color: #008CBA; }
+      color: #aa0000; }
     .breadcrumbs > *.current {
       color: #333333;
       cursor: default; }
@@ -2279,8 +2279,8 @@ meta.foundation-mq-topbar {
   padding: 0.875rem 1.5rem 0.875rem 0.875rem;
   position: relative;
   transition: opacity 300ms ease-out;
-  background-color: #008CBA;
-  border-color: #0078a0;
+  background-color: #aa0000;
+  border-color: #993333;
   color: #FFFFFF; }
   .alert-box .close {
     right: 0.25rem;
@@ -2757,9 +2757,9 @@ meta.foundation-mq-topbar {
       .panel.callout h1.subheader, .panel.callout h2.subheader, .panel.callout h3.subheader, .panel.callout h4.subheader, .panel.callout h5.subheader, .panel.callout h6.subheader {
         line-height: 1.4; }
     .panel.callout a:not(.button) {
-      color: #008CBA; }
+      color: #aa0000; }
       .panel.callout a:not(.button):hover, .panel.callout a:not(.button):focus {
-        color: #0078a0; }
+        color: #993333; }
   .panel.radius {
     border-radius: 3px; }
 
@@ -3185,13 +3185,13 @@ meta.foundation-mq-topbar {
   .icon-bar > * i {
     color: #FFFFFF; }
   .icon-bar > a:hover {
-    background: #008CBA; }
+    background: #aa0000; }
     .icon-bar > a:hover label {
       color: #FFFFFF; }
     .icon-bar > a:hover i {
       color: #FFFFFF; }
   .icon-bar > a.active {
-    background: #008CBA; }
+    background: #aa0000; }
     .icon-bar > a.active label {
       color: #FFFFFF; }
     .icon-bar > a.active i {
@@ -3463,12 +3463,12 @@ ul.pagination {
     ul.pagination li.unavailable:hover a, ul.pagination li.unavailable a:focus, ul.pagination li.unavailable:hover button, ul.pagination li.unavailable button:focus {
       background: transparent; }
     ul.pagination li.current a, ul.pagination li.current button {
-      background: #008CBA;
+      background: #aa0000;
       color: #FFFFFF;
       cursor: default;
       font-weight: bold; }
       ul.pagination li.current a:hover, ul.pagination li.current a:focus, ul.pagination li.current button:hover, ul.pagination li.current button:focus {
-        background: #008CBA; }
+        background: #aa0000; }
   ul.pagination li {
     display: block;
     float: left; }
@@ -3492,7 +3492,7 @@ ul.pagination {
     font-weight: normal;
     margin: 0 0 0.4375rem 0; }
     .side-nav li a:not(.button) {
-      color: #008CBA;
+      color: #aa0000;
       display: block;
       margin: 0;
       padding: 0.4375rem 0.875rem; }
@@ -3512,7 +3512,7 @@ ul.pagination {
       padding: 0;
       border-top-color: #e6e6e6; }
     .side-nav li.heading {
-      color: #008CBA;
+      color: #aa0000;
       font-size: 0.875rem;
       font-weight: bold;
       text-transform: uppercase; }
@@ -3702,11 +3702,11 @@ td {
 
 /* Default Link Styles */
 a {
-  color: #008CBA;
+  color: #aa0000;
   line-height: inherit;
   text-decoration: none; }
   a:hover, a:focus {
-    color: #0078a0; }
+    color: #993333; }
   a img {
     border: none; }
 
@@ -4141,7 +4141,7 @@ blockquote p {
   font-weight: bold; }
   .has-tip:hover, .has-tip:focus {
     border-bottom: dotted 1px #003f54;
-    color: #008CBA; }
+    color: #aa0000; }
   .has-tip.tip-left, .has-tip.tip-right {
     float: none !important; }
 
@@ -4179,7 +4179,7 @@ blockquote p {
       left: 2rem; }
   .tooltip.opened {
     border-bottom: dotted 1px #003f54 !important;
-    color: #008CBA !important; }
+    color: #aa0000 !important; }
 
 .tap-to-close {
   color: #777777;
@@ -4391,7 +4391,7 @@ blockquote p {
   margin-bottom: 0.625rem;
   padding: 0.125rem; }
   .progress .meter {
-    background: #008CBA;
+    background: #aa0000;
     display: block;
     height: 100%; }
   .progress.secondary .meter {
@@ -4447,7 +4447,7 @@ blockquote p {
     .sub-nav dd.active a,
     .sub-nav li.active a {
       border-radius: 3px;
-      background: #008CBA;
+      background: #aa0000;
       color: #FFFFFF;
       cursor: default;
       font-weight: normal;
@@ -4455,7 +4455,7 @@ blockquote p {
       .sub-nav dt.active a:hover,
       .sub-nav dd.active a:hover,
       .sub-nav li.active a:hover {
-        background: #0078a0; }
+        background: #993333; }
 
 /* Foundation Joyride */
 .joyride-list {
@@ -4622,7 +4622,7 @@ blockquote p {
   white-space: nowrap;
   padding: 0.25rem 0.5rem 0.25rem;
   font-size: 0.6875rem;
-  background-color: #008CBA;
+  background-color: #aa0000;
   color: #FFFFFF; }
   .label.radius {
     border-radius: 3px; }
@@ -5384,7 +5384,7 @@ table {
     background: #FAFAFA;
     border-radius: 3px; }
     .range-slider.radius .range-slider-handle {
-      background: #008CBA;
+      background: #aa0000;
       border-radius: 3px; }
       .range-slider.radius .range-slider-handle:hover {
         background: #007ba4; }
@@ -5392,7 +5392,7 @@ table {
     background: #FAFAFA;
     border-radius: 1000px; }
     .range-slider.round .range-slider-handle {
-      background: #008CBA;
+      background: #aa0000;
       border-radius: 1000px; }
       .range-slider.round .range-slider-handle:hover {
         background: #007ba4; }
@@ -5401,7 +5401,7 @@ table {
     cursor: not-allowed;
     opacity: 0.7; }
     .range-slider.disabled .range-slider-handle, .range-slider[disabled] .range-slider-handle {
-      background: #008CBA;
+      background: #aa0000;
       cursor: default;
       opacity: 0.7; }
       .range-slider.disabled .range-slider-handle:hover, .range-slider[disabled] .range-slider-handle:hover {
@@ -5426,7 +5426,7 @@ table {
   z-index: 1;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
-  background: #008CBA; }
+  background: #aa0000; }
   .range-slider-handle:hover {
     background: #007ba4; }
 
@@ -5816,7 +5816,7 @@ kbd {
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); }
   .switch input:checked + label {
-    background: #008CBA; }
+    background: #aa0000; }
   .switch input:checked + label:after {
     left: 2.25rem; }
   .switch label {
@@ -5833,7 +5833,7 @@ kbd {
   .switch label:after {
     background: #FFFFFF; }
   .switch input:checked + label {
-    background: #008CBA; }
+    background: #aa0000; }
   .switch.large label {
     height: 2.5rem;
     width: 5rem; }

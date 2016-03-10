@@ -1,62 +1,109 @@
 <!doctype html>
 <html class="no-js" lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Ma Cave</title>
-		<link rel="stylesheet" href="css/foundation.css" />
-		<script src="js/vendor/modernizr.js"></script>
-	</head>
-	<body>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accueil | Baseball Trois-Pistoles</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/datatable.min.css" />
+	<link rel="stylesheet" href="css/baseballtp.css" />
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+    <script src="js/vendor/modernizr.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
     
-		<div class="off-canvas-wrap" data-offcanvas>
-			<div class="inner-wrap">
-				<nav class="tab-bar">
-					<section class="left-small">
-						<a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
-					</section>
+            
+    <!-- For medium screen -->
+	<section class="navigation-section">
+		
+		<div>
+			
+			<div class="columns">
+				<div class="top-banner">
+					<div id="colomn-content">
+						<img src="images/logo_tp_mineur.jpg" />
+						<span>Baseball mineur de Trois-Pistoles</span>
+					</div>
+				</div>
+				<!-- TOP BAR INITIALIZATION -->
+				<nav class="top-bar" data-topbar>
+					<ul class="title-area">
+						<li class="name">
+							
+						</li>
+						<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+					</ul>
 
-					<section class="middle tab-bar-section">
-						<h1 class="title">Ma Cave</h1>
+					<!-- TOP BAR MENU ELEMENTS -->
+					<section class="top-bar-section">
+						<!-- Right Nav Section -->
+						<ul class="right">
+							<li>
+								<a href="index.html">Accueil</a>
+							</li>
+							<li class="has-dropdown">
+								<a href="#">Équipes</a>
+								<ul class="dropdown">
+									<li><a href="#">Atome - Gaz o bar</a></li>
+									<li><a href="#">Moustique - Gaz o bar</a></li>
+									<li><a href="#">Pee-Wee - Gaz o bar</a></li>
+									<li><a href="#">Bantam - Gaz o bar</a></li>
+									<li><a href="#">Midget - Gaz o bar</a></li>
+								</ul>
+							</li>
+							<li class="has-dropdown">
+								<a href="#">Horaires</a>
+								<ul class="dropdown">
+									<li><a href="#">Complète</a></li>
+									<li><a href="#">Atome - Gaz o bar</a></li>
+									<li><a href="#">Moustique - Gaz o bar</a></li>
+									<li><a href="#">Pee-Wee - Gaz o bar</a></li>
+									<li><a href="#">Bantam - Gaz o bar</a></li>
+									<li><a href="#">Midget - Gaz o bar</a></li>
+								</ul>
+							</li>
+							<li><a href="tournement.php">Tournoi</a></li>
+							<li><a href="tournement.php">Comité</a></li>
+							<li><a href="tournement.php">Media</a></li>
+							<li><a href="tournement.php">Nous joindre</a></li>
+						</ul>
+
+						<!-- Left Nav Section -->
+						<ul class="left">
+							<li>
+								<a href="#"></a>
+							</li>
+						</ul>
 					</section>
 				</nav>
 
-				<aside class="left-off-canvas-menu">
-					<ul class="off-canvas-list">
-						<li><label>jgthibault</label></li>
-						<li><a href="list_vin.html">Mes Vins</a></li>
-						<li><a href="vin.html">Ajouter</a></li>
-						<li><a href="param.html">Paramètres</a></li>
-					</ul>
-				</aside>
-
-				<section class="main-section">					
-					<form>
-						<div class="row">
-							<div class="small-12 medium-6 columns">
-							  <label>Nom d'utilisateur</label>
-							  <input type="text" id="username" />
-							</div>
-							<div class="small-12 medium-6 columns">
-							  <label>Mot de passe</label>
-							  <input type="password" id="password" />
-							</div>
-							<div class="right-small-12 columns">
-								<a role="button" aria-label="submit form" href="#" class="button right">Connecter</a>
-							</div>
-						</div>
-					</form>					
-				</section>
-
-				<a class="exit-off-canvas"></a>
-
 			</div>
 		</div>
+	</section>
     
+	<!-- MAIN SECTION -->
+	<section class="main-section">
+		<div class="small-12 columns">
+		<div class="row">
+			<h4>équipes</h4>
+		</div>
+			<div class="row">					
+				<div class="paging"></div>
+			</div>
+		</div>
+		<div class="row">
+			<a href="home_team_edit.php" class="button right">Ajouter</a>
+		</div>
+
+	</section>
+
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
+    <script src="js/datatable.min.js"></script>
     <script>
-      $(document).foundation();
-    </script>
-  </body>
+        $(document).foundation();
+
+</script>
+</body>
 </html>

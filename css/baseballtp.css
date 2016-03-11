@@ -15,3 +15,29 @@ span {
   display: inline-block;
   vertical-align: bottom;
 }
+.stats
+{
+	width:100%;
+}
+.stats th
+{
+	background-color:black;
+	color:white;
+	margin:0px;
+}
+
+.small-title
+{
+	font-size:14px;
+}
+
+.bold
+{
+	font-weight:bold;
+}
+
+.inner-block
+{
+	padding:5px;
+	background-color:red;
+}

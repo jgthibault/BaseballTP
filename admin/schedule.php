@@ -50,7 +50,7 @@
                         <table id="saison" width="100%">
                             <thead>
                             <tr>
-                                <th>Action</th><th>Date</th><th>Catégorie</th></th><th>Équipe pistoloise</th><th>Adversaire</th>
+                                <th>Action</th><th>Date</th><th>Catégorie</th></th><th>Équipe pistoloise</th><th>Équipe adversaire</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -59,6 +59,8 @@
                         		{                       			
                         			while ($row = $result->fetch_object("Schedule")) 
                         			{
+                        			     $schedule = new Schedule();
+                                         $schedule->initDB($row->Id, $mySql);
                 			 ?>
                                         <tr>
                             				<td>
@@ -72,9 +74,9 @@
                                                 </a>
                                             </td>
                                             <td> <?php echo date("Y-m-d", $row->Date); ?> </td>
-                                            <td> <?php echo $row->CategoryId; ?> </td>
-                                            <td> <?php echo $row->TeamId; ?> </td>
-                                            <td> <?php echo $row->AwayTeamId; ?> </td>
+                                            <td> <?php echo $schedule->Category->Description; ?> </td>
+                                            <td> <?php echo $schedule->Team->Name; ?> </td>
+                                            <td> <?php echo $schedule->AwayTeam->getNameCity(); ?> </td>
                                         </tr>
                              <?php          
                                     }  			

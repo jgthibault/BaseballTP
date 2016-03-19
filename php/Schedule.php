@@ -195,23 +195,23 @@ class Schedule extends BaseClass
     public function validate($mySql)
     {
 		$this->initValueState();
-        		
-		if ($this->SeasonId = 0)
+        	
+		if ($this->SeasonId == 0)
 		{
 			$this->m_valueState["seasonId"] = "La saison est obligatoire.";
 		}
         
-        if ($this->CategoryId = 0)
+        if ($this->CategoryId == 0)
 		{
 			$this->m_valueState["categoryId"] = "La catégorie est obligatoire.";
 		}
         
-        if ($this->TeamId = 0)
+        if ($this->TeamId == 0)
 		{
 			$this->m_valueState["teamId"] = "L'équipe pistoloise est obligatoire.";
 		}
         
-        if ($this->AwayTeamId = 0)
+        if ($this->AwayTeamId == 0)
 		{
 			$this->m_valueState["awayTeamId"] = "L'équipe adverse est obligatoire.";
 		}
@@ -236,16 +236,16 @@ class Schedule extends BaseClass
                                              IsTPHome = ?, 
                                              AwayTeamId = ?, 
                                              Date = ?, 
-                                             stade = ?, 
-                                             city = ?,
+                                             Stade = ?, 
+                                             City = ?,
                                              MarkerId1 = ?,
                                              MarkerId2 = ?,
-                                             ScheduleId1 = ?,
-                                             ScheduleId2 = ?,
-                                             ScheduleId3 = ?,
-                                             ScheduleId4 = ?,
+                                             RefereeId1 = ?,
+                                             RefereeId2 = ?,
+                                             RefereeId3 = ?,
+                                             RefereeId4 = ?,
                                              PointTP = ?,
-                                             PointAwayTeam = ?,
+                                             PointAwayTeam = ?
                                          WHERE Id = ?", 
                         array("iiiiiissiiiiiiiii", 
                               $this->SeasonId, 
@@ -254,8 +254,8 @@ class Schedule extends BaseClass
                               $this->IsTPHome,
                               $this->AwayTeamId,
                               $this->Date,
-                              $this->stade,
-                              $this->city,
+                              $this->Stade,
+                              $this->City,
                               $this->MarkerId1,
                               $this->MarkerId2,
                               $this->RefereeId1,
@@ -269,22 +269,7 @@ class Schedule extends BaseClass
 	
 	public function addNew($mySql)
 	{
-	   echo  $this->SeasonId . " - " . 
-							  $this->CategoryId . " - " . 
-                              $this->TeamId . " - " . 
-                              $this->IsTPHome . " - " . 
-                              $this->AwayTeamId . " - " . 
-                              $this->Date . " - " . 
-                              $this->Stade . " - " . 
-                              $this->City . " - " . 
-                              $this->MarkerId1 . " - " . 
-                              $this->MarkerId2 . " - " . 
-                              $this->RefereeId1 . " - " . 
-                              $this->RefereeId2 . " - " . 
-                              $this->RefereeId3 . " - " . 
-                              $this->RefereeId4 . " - " . 
-                              $this->PointTP . " - " . 
-                              $this->PointAwayTeam;
+
 	    $mySql->prepare("INSERT INTO schedule (SeasonId, 
                                                CategoryId, 
                                                TeamId, 
@@ -295,10 +280,10 @@ class Schedule extends BaseClass
                                                City, 
                                                MarkerId1, 
                                                MarkerId2, 
-                                               ScheduleId1, 
-                                               ScheduleId2, 
-                                               ScheduleId3, 
-                                               ScheduleId4,
+                                               RefereeId1, 
+                                               RefereeId2, 
+                                               RefereeId3, 
+                                               RefereeId4,
                                                PointTP,
                                                PointAwayTeam ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
                         array("iiiiiissiiiiiiii",

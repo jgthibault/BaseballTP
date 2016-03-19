@@ -39,6 +39,7 @@
                 <div class="small-12 columns">
                     <div class="row">
                         <h4>horaire - <?php $schedule = new Schedule();
+
 											if (isset($_POST["date"]))
 											{
 												$schedule->initProperty($_POST["MyId"], 
@@ -46,7 +47,7 @@
                                                                         $_POST["categoryId"], 
                                                                         $_POST["teamId"],
                                                                         $_POST["awayTeamId"],
-                                                                        isset($_POST["isTPHome"]),
+                                                                        (isset($_POST["tpHome"])) ? 1 : 0,
                                                                         strtotime($_POST["date"]),
                                                                         $_POST["stade"],
                                                                         $_POST["city"],
@@ -74,17 +75,16 @@
 													   
 														$schedule->addNew($mySql);
 													}
-													/*header('Location: schedule.php');
-													exit;*/
 												}
 												
-												echo date("Y-m-d", $schedule->Date);
+												header('Location: schedule.php');
+												exit;
 											}
-											else if (isset($_GET["Id"]))
+											else if (isset($_GET["id"]))
                                             {
-                                                $schedule->initDB($_GET["Id"], $mySql);
+                                                $schedule->initDB($_GET["id"], $mySql);
                                                 
-												echo date("Y-m-d", $schedule->Date);
+												echo date("Y-m-d H:i", $schedule->Date);
                                                 $schedule->PageMode = Constants::PAGE_MODE_EDIT;
                                             }
                                             else
@@ -100,15 +100,15 @@
                             <div class="row">
                                 <div class="small-6 columns">
                                     <label <?php if ($schedule->attributeHasError('date')) { echo "class='error'";} ?>>Date
-                                        <input type="date" 
+                                        <input type="datetime-local" 
                                                name="date" 
                                                value="<?php
                                                           if ($schedule->Date <> 0)
                                                           {
-                                                               echo date("Y-m-d", $schedule->Date); 
+                                                               echo date("Y-m-d H:i", $schedule->Date); 
                                                           }  
                                                       ?>" 
-                                               <?php if($schedule->PageMode == Constants::PAGE_MODE_EDIT) {echo "readonly";} ?>/>
+                                        />
                                     </label>
 									<?php 
 										if ($schedule->attributeHasError('date')) 

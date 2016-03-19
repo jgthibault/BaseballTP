@@ -20,6 +20,11 @@ class AwayTeam extends BaseClass
         return $row->Description;
     }
     
+    public function getNameCity()
+    {
+        return $this->City . " - " . $this->Name;
+    }
+    
     public function initProperty($id, $name, $categoryId, $city)
     {   
         $this->setProperty($id, $name, $categoryId, $city);         

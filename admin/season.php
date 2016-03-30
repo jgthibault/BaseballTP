@@ -1,4 +1,8 @@
 <!doctype html>
+<?php
+	// Start the session
+	session_start();
+?>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,14 +22,27 @@
 		include("../php/LocalDefinition.php");
         include("../php/Const.php");
         include("../php/BaseClass.php");
-        include("../php/Season.php");
+		include("../php/User.php");
+		include("../php/Session.php");
+		include("../php/Season.php");
 
         LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_GENERAL, Constants::ADMIN_MENU_2_SEASON);
+		
+		$mySql = new MySql();
+		
+		if (isset($_SESSION[Session::C_SESSION_USER]))
+		{
+			$session = new Session($_SESSION[Session::C_SESSION_USER], $_SESSION[Session::C_SESSION_PASS], $mySql);
+		}
+		
+		if (!isset($session) or ! $session->IsConnected())
+		{
+			header('Location: index.php');
+			exit;
+		}
             
         include("large_menu.php");
         /*include("small_menu_start.php");*/
-
-        $mySql = new MySql();
         
         if(isset($_GET["delete"]))
         { 

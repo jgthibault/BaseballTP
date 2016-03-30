@@ -25,10 +25,11 @@
         include("../php/BaseClass.php");
 		include("../php/User.php");
 		include("../php/Session.php");
-        include("../php/Category.php");
-        include("../php/HomeTeam.php");       
+		include("../php/HomeTeam.php");
+        include("../php/Coach.php");
+        
 
-        LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_TEAM, Constants::ADMIN_MENU_2_HOME_TEAM);
+        LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_GENERAL, Constants::ADMIN_MENU_2_COACH);
             
         include("large_menu.php");
         /*include("small_menu_start.php");*/
@@ -48,7 +49,7 @@
         
         if(isset($_GET["delete"]))
         {
-            $mySql->execute("DELETE FROM home_team WHERE Id = " . $_GET["delete"]);
+            $mySql->execute("DELETE FROM coach WHERE Id = " . $_GET["delete"]);
         }
 
     ?>
@@ -56,35 +57,36 @@
             <section class="main-section">
                 <div class="small-12 columns">
                 <div class="row">
-                    <h4>équipes</h4>
+                    <h4>entraîneurs</h4>
                 </div>
                     <div class="row">					
-                        <table id="team" width="100%">
+                        <table id="Coach" width="100%">
                             <thead>
                             <tr>
-                                <th>Action</th><th>Nom</th><th>Catégorie</th>
+                                <th>Action</th><th>Prénom</th><th>Nom de famille</th><th>Équipe</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                                if ($result = $mySql->execute("SELECT * FROM home_team ORDER BY CategoryId")) 
+                                if ($result = $mySql->execute("SELECT * FROM coach ORDER BY LastName")) 
                         		{                       			
-                        			while ($row = $result->fetch_object("HomeTeam")) 
+                        			while ($row = $result->fetch_object("Coach")) 
                         			{
                 			 ?>
                                         <tr>
                             				<td>
-                                                <a title="Modifier" href="home_team_edit.php?id=<?php echo $row->Id; ?>">
+                                                <a title="Modifier" href="coach_edit.php?id=<?php echo $row->Id; ?>">
                                                     <i class="fi-page-edit size-32"> </i>
                                                 </a> 
                                                 <a title="Supprimer" 
-                                                    href="home_team.php?delete=<?php echo $row->Id; ?>"
+                                                    href="coach.php?delete=<?php echo $row->Id; ?>"
                                                     onclick="return confirm('Voulez-vous supprimer l\'enregistrement?');">
                                                     <i class="fi-page-remove size-32"></i>
                                                 </a>
                                             </td>
-                                            <td> <?php echo $row->Name; ?> </td>
-                                            <td> <?php echo $row->getCategoryDesc($mySql); ?> </td>
+                                            <td> <?php echo $row->FirstName; ?> </td>
+                                            <td> <?php echo $row->LastName; ?> </td>
+                                            <td> <?php echo $row->getTeamName($mySql); ?> </td>
                                         </tr>
                              <?php          
                                     }  			
@@ -98,7 +100,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <a href="home_team_edit.php" class="button right">Ajouter</a>
+                    <a href="coach_edit.php" class="button right">Ajouter</a>
                 </div>
 
             </section>
@@ -109,10 +111,10 @@
     <script>
         $(document).foundation();
 
-        $('#team').datatable({
+        $('#Coach').datatable({
             pageSize: 15,
-            sort: [false, true, true],
-            filters: [false, true, true],
+            sort: [false, true, true, true],
+            filters: [false, true, true, 'select'],
             filterText: 'Filtre '
         }) ;
 </script>

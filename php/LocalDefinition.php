@@ -17,9 +17,9 @@ class LocalDef
 		if ($level == self::$FirstLevelMenu) { return "active"; }		
 	}
 	
-	public static function isSecondActive($level)
+	public static function isSecondActive($firstLevel, $secondLevel)
 	{
-		if ($level == self::$SecondLevelMenu) { return "active"; }		
+		if ($firstLevel == self::$FirstLevelMenu && $secondLevel == self::$SecondLevelMenu) { return "active"; }		
 	}
 }
 ?>

@@ -65,8 +65,10 @@ class MySql
 		if ($stmt = $this->mysqli->prepare($query))
 		{
 		    call_user_func_array(array($stmt, "bind_param"), $this->refValues($params));    	
-			$stmt->execute();
+			$result = $stmt->execute();
 			$stmt->close(); 
+			
+			return $result;
 		}
         
 	}

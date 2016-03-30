@@ -1,4 +1,8 @@
 <!doctype html>
+<?php
+	// Start the session
+	session_start();
+?>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,6 +22,8 @@
 		include("../php/LocalDefinition.php");
         include("../php/Const.php");
         include("../php/BaseClass.php");
+		include("../php/User.php");
+		include("../php/Session.php");
         include("../php/Season.php");
         include("../php/Category.php");
         include("../php/AwayTeam.php");
@@ -33,6 +39,17 @@
         /*include("small_menu_start.php");*/
 
         $mySql = new MySql();
+		
+		if (isset($_SESSION[Session::C_SESSION_USER]))
+		{
+			$session = new Session($_SESSION[Session::C_SESSION_USER], $_SESSION[Session::C_SESSION_PASS], $mySql);
+		}
+		
+		if (!isset($session) or ! $session->IsConnected())
+		{
+			header('Location: index.php');
+			exit;
+		}
         
         if(isset($_GET["delete"]))
         { 
@@ -44,7 +61,7 @@
             <section class="main-section">
                 <div class="small-12 columns">
                 <div class="row">
-                    <h4>horaire</h4>
+                    <h4>horaire - match</h4>
                 </div>
                     <div class="row">				
                         <table id="saison" width="100%">
@@ -73,7 +90,7 @@
                                                     <i class="fi-page-remove size-32"></i>
                                                 </a>
                                             </td>
-                                            <td> <?php echo date("Y-m-d", $row->Date); ?> </td>
+                                            <td> <?php echo date("Y-m-d H:i", $row->Date); ?> </td>
                                             <td> <?php echo $schedule->Category->Description; ?> </td>
                                             <td> <?php echo $schedule->Team->Name; ?> </td>
                                             <td> <?php echo $schedule->AwayTeam->getNameCity(); ?> </td>

@@ -9,12 +9,9 @@
 class User {
     public $UserName;
     public $Password;
-    public $FirstName;
-    public $LastName;
-    public $Created;
-
-    public function getFullName()
+    
+    function __construct()
     {
-        return $this->FirstName . ' ' . $this->LastName;
-    }
+		
+	}
 } 

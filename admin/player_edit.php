@@ -23,9 +23,10 @@
         include("../php/BaseClass.php");
 		include("../php/User.php");
 		include("../php/Session.php");
-        include("../php/Marker.php");
+		include("../php/HomeTeam.php");
+        include("../php/Player.php");
 
-        LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_GENERAL, Constants::ADMIN_MENU_2_MARKER);
+        LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_GENERAL, Constants::ADMIN_MENU_2_PLAYER);
             
         include("large_menu.php");
         /*include("small_menu_start.php");*/
@@ -47,104 +48,108 @@
             <section class="main-section">
                 <div class="small-12 columns">
                     <div class="row">
-                        <h4>marqueur - <?php  $marker = new Marker();
+                        <h4>joueur - <?php  $player = new Player();
 											if (isset($_POST["id"]))
 											{
-												$marker->initProperty($_POST["id"], $_POST["firstName"], $_POST["lastName"], strtotime($_POST["birth"]));
-												$marker->PageMode = $_POST["pageMode"];
-                                                $marker->validate($mySql);
+												$player->initProperty($_POST["id"], $_POST["firstName"], $_POST["lastName"], $_POST["teamId"]);
+												$player->PageMode = $_POST["pageMode"];
+                                                $player->validate($mySql);
 																								
-												if (!$marker->getHasError())
+												if (!$player->getHasError())
 												{
-													if ($marker->PageMode == Constants::PAGE_MODE_EDIT)
+													if ($player->PageMode == Constants::PAGE_MODE_EDIT)
 													{
-														$marker->update($mySql);
+														$player->update($mySql);
 													}
 													else
 													{
-														$marker->addNew($mySql);
+														$player->addNew($mySql);
 													}
-													header('Location: marker.php');
+													header('Location: player.php');
 													exit;
 												}
 												
-												echo $marker->getFullName();
+												echo $player->getFullName();
 											}
 											else if (isset($_GET["id"]))
                                             {
-                                                $marker->initDB($_GET["id"], $mySql);
+                                                $player->initDB($_GET["id"], $mySql);
                                                 
-												echo $marker->getFullName();
-                                                $marker->PageMode = Constants::PAGE_MODE_EDIT;
+												echo $player->getFullName();
+                                                $player->PageMode = Constants::PAGE_MODE_EDIT;
                                             }
                                             else
                                             {
                                                 echo "[Nouveau]";
-                                                $marker->PageMode = Constants::PAGE_MODE_ADD;
+                                                $player->PageMode = Constants::PAGE_MODE_ADD;
                                             }
                                       ?>
                         </h4>
                     </div>
                     <div class="row">					
-                        <form action="marker_edit.php" id="form_marker" method="post">
+                        <form action="player_edit.php" id="form_player" method="post">
                             <div class="row">
                                 <div class="small-6 columns">
-                                    <label <?php if ($marker->attributeHasError('firstName')) { echo "class='error'";} ?>>Prénom
+                                    <label <?php if ($player->attributeHasError('firstName')) { echo "class='error'";} ?>>Prénom
                                         <input type="text" 
                                                name="firstName" 
-                                               value="<?php echo $marker->FirstName; ?>" />
+                                               value="<?php echo $player->FirstName; ?>" />
                                     </label>
 									<?php 
-										if ($marker->attributeHasError('firstName')) 
+										if ($player->attributeHasError('firstName')) 
 										{
-											echo "<small class='error'>" . $marker->getAttributeError("firstName") . "</small>";
+											echo "<small class='error'>" . $player->getAttributeError("firstName") . "</small>";
 										} 
 									?>
 									
                                 </div>
                                 <div class="small-6 columns">
-                                    <label <?php if ($marker->attributeHasError('lastName')) { echo "class='error'";} ?>>Nom
-                                        <input type="text" name="lastName" value="<?php echo $marker->LastName; ?>" />
+                                    <label <?php if ($player->attributeHasError('lastName')) { echo "class='error'";} ?>>Nom
+                                        <input type="text" name="lastName" value="<?php echo $player->LastName; ?>" />
                                     </label>
 									<?php 
-										if ($marker->attributeHasError('lastName')) 
+										if ($player->attributeHasError('lastName')) 
 										{
-											echo "<small class='error'>" . $marker->getAttributeError("lastName") . "</small>";
+											echo "<small class='error'>" . $player->getAttributeError("lastName") . "</small>";
 										} 
 									?>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="small-6 columns">
-                                    <label <?php if ($marker->attributeHasError('birth')) { echo "class='error'";} ?>>Date de naisance
-                                        <input type="date" 
-                                               name="birth" 
-                                               value="<?php 
-                                                          if ($marker->Birth <> 0)
-                                                          {
-                                                               echo date("Y-m-d", $marker->Birth); 
-                                                          } 
-                                                      ?>" />
+                                    <label>Équipe
+                                        <select name="teamId">
+                                        
+                                        <?php
+                                        if ($result = $mySql->execute("SELECT * FROM home_team ORDER BY CategoryId ASC"))
+                                        {
+                                            while ($row = $result->fetch_object("HomeTeam"))
+                                            {
+                                            ?>
+                                                 <option value="<?php echo $row->Id; ?>" 
+                                                         <?php if ($row->Id == $player->TeamId) {echo "selected";} ?>> 
+                                                    <?php echo $row->Name; ?>
+                                                 </option>
+                                            <?php
+                                            }
+                                        }
+        
+                                        ?>
+                                        
+										</select>
                                     </label>
-									<?php 
-										if ($marker->attributeHasError('birth')) 
-										{
-											echo "<small class='error'>" . $marker->getAttributeError("birth") . "</small>";
-										} 
-									?>
 									
                                 </div>
                                 
-                                
-                                <input type="hidden" name="id" value="<?php echo $marker->Id; ?>" />
-                                <input type="hidden" name="pageMode" value="<?php echo $marker->PageMode; ?>"  />
+                                <input type="hidden" name="id" value="<?php echo $player->Id; ?>" />
+                                <input type="hidden" name="pageMode" value="<?php echo $player->PageMode; ?>"  />
                             </div>
                             <div class="row">
                                     <div class="small-2 columns right">
-                                        <a href="marker.php" class="button right">Annuler</a>
+                                        <a href="player.php" class="button right">Annuler</a>
                                     </div>
                                     <div class="small-2 columns right">
-                                        <a href="javascript:;" onclick="document.getElementById('form_marker').submit();" class="button right">Enregistrer</a>
+                                        <a href="javascript:;" onclick="document.getElementById('form_player').submit();" class="button right">Enregistrer</a>
                                     </div> 
                                 
                             </div>  

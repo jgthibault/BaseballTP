@@ -1,4 +1,8 @@
 <!doctype html>
+<?php
+	// Start the session
+	session_start();
+?>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,88 +10,104 @@
     <title>Administration | Baseball Trois-Pistoles</title>
     <link rel="stylesheet" href="../css/foundation.css" />
     <link rel="stylesheet" href="../css/datatable.min.css" />
+    <link rel="stylesheet" href="../foundation-icons/foundation-icons.css" />
     <script src="../js/vendor/modernizr.js"></script>
     <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../js/datatable.min.js"></script>
 </head>
 <body>
     <?php
         /* Object */
 		include("../php/MySql.php");
-        incluse("../php/LocalDefinition.php");
+		include("../php/LocalDefinition.php");
+        include("../php/Const.php");
+		include("../php/User.php");
+        include("../php/BaseClass.php");
+		include("../php/Session.php");
 		
+		LocalDef::setLevelMenu(Constants::ADMIN_MENU_1_HOME, Constants::NONE);
+            
         include("large_menu.php");
         
-        
-        /*include("small_menu_start.php");*/
-
-        /*$mySql = new MySql();
-		if ($result = $mySql->execute("SELECT * FROM category")) 
+        $mySql = new MySql();
+		
+		if(isset($_GET["delog"]) && isset($_SESSION[Session::C_SESSION_USER]))
 		{
-
-			
-			while ($row = $result->fetch_object("Category")) 
-			{
-				echo $row->getFullName();
-			}
-
-			
-			$result->close();
-		}*/
+			$session = new Session("","", $mySql);
+			$session->closeSession();
+		}
+		
+		if(isset($_POST["username"]))
+		{
+			$session = new Session($_POST["username"], $_POST["password"], $mySql);
+		}
+		else if (isset($_SESSION[Session::C_SESSION_USER]))
+		{
+			$session = new Session($_SESSION[Session::C_SESSION_USER], $_SESSION[Session::C_SESSION_PASS], $mySql);
+		}
+		else
+		{
+			$session = new Session("","", $mySql);
+		}
+        
+        
     ?>
             <!-- MAIN SECTION -->
             <section class="main-section">
-                
+                <div class="small-12 columns">
                 <div class="row">
-                    <h4>MES VINS</h4>
+                    <h4>connexion</h4>
                 </div>
-                <div class="row">
-                    <div class="small-12 columns">
-						
-                        <table id="example" width="100%">
-                            <thead>
-                            <tr>
-                                <th>NOM</th><th>COULEUR</th><th class="show-for-medium-up">PASTILLE</th><th>NOTE</th><th>PRIX</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>RH Philips</td><td>Rouge</td><td class="show-for-medium-up">Aromatique et souple</td><td>8</td><td>15.95$</td>
-                            </tr>
-                            <tr>
-                                <td>Bourbon</td><td>Blanc</td><td class="show-for-medium-up">Aromatique et ample</td><td>8</td><td>16.00$</td>
-                            </tr>
-                            <tr>
-                                <td>RH Philips</td><td>Rouge</td><td class="show-for-medium-up">Aromatique et souple</td><td>8</td><td>15.10$</td>
-                            </tr>
-                            <tr>
-                                <td>RH Philips</td><td>Rouge</td><td class="show-for-medium-up">Aromatique et souple</td><td>8</td><td>15.95$</td>
-                            </tr>
-                            <tr>
-                                <td>RH Philips</td><td>Rouge</td><td class="show-for-medium-up">Aromatique et souple</td><td>8</td><td>15.95$</td>
-                            </tr>
-                            <tr>
-                                <td>Bourbon</td><td>Blanc</td><td class="show-for-medium-up">Aromatique et ample</td><td>8</td><td>16.00$</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                    
+                        <?php 
+							if ($session->isConnected())
+							{
+						?>
+								<div class="row">
+									Vous êtes connecté en tant que <?php echo $session->User->UserName; ?>
+								</div>
+								<div class="row right">
+									<div class="small-6 columns">
+										<a href="index.php?delog" class="button right">Déconnecter</a>
+									</div> 
+								</div>  
+						<?php		
+							}
+							else
+							{
+								?>
+								<form action="index.php" id="form_login" method="post">
+									<div class="row">				
+										<div class="small-6 columns">
+											<label>Nom d'utilisateur
+												<input type="text" name="username" />
+											</label>									
+										</div>
+										<div class="small-6 columns">
+											<label>Mot de passe
+												<input type="password" name="password" />
+											</label>																		
+										</div>
+									</div>
+									<div class="row">
+										<div class="small-6 columns right">
+											<a href="javascript:;" onclick="document.getElementById('form_login').submit();" class="button right">Connecter</a>
+										</div> 
+									
+									</div>  
+								</div>
+								<?php
+							}	
+							
+						?>
                         <div class="paging"></div>
-                    </div>
                 </div>
-
             </section>
 
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/datatable.min.js"></script>
+    <script src="../js/vendor/jquery.js"></script>
+    <script src="../js/foundation.min.js"></script>
     <script>
         $(document).foundation();
-
-        $('#example').datatable({
-            pageSize: 5,
-            sort: [true, true, true,true,true],
-            filters: [true, true, 'select', true, true],
-            filterText: 'Filtre '
-        }) ;
 </script>
 </body>
 </html>

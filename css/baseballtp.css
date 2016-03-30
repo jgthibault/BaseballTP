@@ -1,6 +1,6 @@
 .top-banner
 {
-	background:black;
+	background:#333333;
 	color:white;
 	font-size:16px;
 	
@@ -21,7 +21,7 @@ span {
 }
 .stats th
 {
-	background-color:black;
+	background-color:#333333;
 	color:white;
 	margin:0px;
 }

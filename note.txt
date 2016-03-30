@@ -1,0 +1,40 @@
+Arbitre:
+Email*
+Numéro téléphone*
+
+Marqueur
+Email*
+Téléphone*
+-Naissance
+
+Gérant
+
+Entraîneur
+Entraineur chef / entraineur adjoint
+
+Catégorie
+Ajouter Rallye Cap
+
+Général:
+Date, regarder pour changer le format par défaut yyyy/mm/jj hh:mm T
+
+Gestion des tournois par équipe
+
+Tournoi - 
+Tournoi Provincial Xplornet Midget A
+Photo
+
+*privé
+
+
+Site complet
+
+Partie, enlever 3 dernières
+
+Image
+Lien sur les images par équipe
+Image tous, filtrer par année (et choisir par année)
+
+Inscription
+Afficher fichier PDF
+Télécharger fichier pdf
